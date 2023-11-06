@@ -16,11 +16,11 @@ def index (request):
                  form.save()
                  messages.success(request , "Your Post has been uploaded successfully....")
         except Exception as e:
-             messages.error(request , "Failed to upload post...try after some time...")
+             messages.error(request , "Failed to upload post...try after sometime...")
 
     form=imageForm
     image=Images.objects.all()
-    paginate=Paginator(image , 12)
+    paginate=Paginator(image , 6)
   
     page_no=request.GET.get('page')
     final_data=paginate.get_page(page_no)
