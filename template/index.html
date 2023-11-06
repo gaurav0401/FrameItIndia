@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrameItIndia</title>
+
+
+
+
+    <style>
+        #images {
+            width: 80vw;
+            margin-left: 10vw;
+            /* padding-right: %; */
+            height: 100vh;
+            min-width: 80vw;
+            border: 1px solid white;
+            border-radius: 12px;
+        }
+
+
+
+
+        body {
+            background-color: whitesmoke;
+
+            margin-left: auto;
+
+        }
+
+
+
+
+
+
+
+        .images {
+            margin-top: 5px;
+            margin-right: 25px;
+            height: 190px;
+            margin-bottom: 10px;
+            transition-property: height;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+            cursor: pointer;
+
+
+        }
+
+        .show-case :hover {
+
+            height: 200px;
+
+
+        }
+
+
+
+        .footer {
+
+
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            background-color: black;
+            text-decoration: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+ <body style="background-color: rgb(255, 255, 255);">
+
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1"><i class="fa-regular fa-images"></i> FrameItIndia</span>
+            </div>
+        </nav>
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0  py-0 " role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+
+        <div class="container-fluid mt-0" style=" background: linear-gradient(to right, #8360c3, #2ebf91);">
+            <div class="py-5 text-center  text-white" style="height: 38vh; background: linear-gradient(to right, #8360c3, #2ebf91); border-radius: 5px;">
+                <h1 class="mb-4">Join FrameItIndia Community by posting your best Shots <i class="fa-solid fa-camera"></i></h1>
+                <form action="" method="post" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+                    {{form}}
+
+                    <input type="submit" class="btn" style="background-color: rgb(48, 48, 48); color: white;" value="Upload">
+
+
+                </form>
+
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="container my-5 py-5">
+
+            <h3>
+                &nbsp; Pictures By FrameItIndia Community
+            </h3>
+
+            <div class="row">
+                {% if image %}
+
+                {% for i in image %}
+                <div class="col-md-4 mt-3">
+
+                    <div class="card m-2"><a href="{{i.photo.url}}"> <img src="{{i.photo.url}}" alt=""
+                                class="card-img-top" height="250px"></a>
+                        <div class="card-footer" style="background-color: rgb(48, 48, 48); color: whitesmoke;">
+                            <small>Posted on:{{i.date}}</small>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                {% endfor %}
+
+                {% else %}
+
+                <big class="text-center mt-5">No pictures available for now</big>
+
+                {% endif %}
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+        <nav aria-label="Page navigation " class="container ">
+            <ul class="pagination " style="justify-content: center;">
+                {% if image.has_previous %}
+                <li class="page-item"><a class="page-link bg-dark text-white"
+                        href="?page={{image.previous_page_number}}">Previous</a></li>
+                {% endif%}
+              
+            {%if lastpage > 1 %}
+                {% for i in totalpagelist %}
+                <li class="page-item"><a class="page-link  bg-dark text-white" href="/?page={{i}}">{{i}}</a></li>
+                <!--           
+              <li class="page-item"><a class="page-link  bg-dark text-white" href="/?page=2">2</a></li>
+              <li class="page-item"><a class="page-link  bg-dark text-white" href="/?page=3">3</a></li> -->
+                {% endfor %}
+            {%endif %}
+
+                {% if image.has_next %}
+                <li class="page-item"><a class="page-link  bg-dark text-white"
+                        href="/?page={{image.next_page_number}}">Next</a></li>
+                {% endif%}
+
+                {% if lastpage > 2%}
+                <li class="page-item"><a class="page-link  bg-dark text-white" href="/?page={{lastpage}}">Last</a></li>
+                {% endif%}
+            </ul>
+        </nav>
+
+
+
+        <div class="footer" style="margin-top: 50vh;">
+            <div class="footer" style="margin-bottom: 0px;">
+
+                <footer class="bg-dark text-center text-lg-start text-white">
+                    <!-- Grid container -->
+
+
+                    <!-- Grid container -->
+
+                    <!-- Copyright -->
+                    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                        © 2023 Copyright:
+                        <a class="text-white" href="https://gaurav-bhatt-s-portfolio.vercel.app/"
+                            style="text-decoration: underline;">Design & developed by Gaurav Bhatt</a>
+                    </div>
+                    <!-- Copyright -->
+                </footer>
+
+            </div>
+            <!-- End of .container -->
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+   
+
+</body>
+
+</html>
