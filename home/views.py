@@ -15,7 +15,7 @@ def index (request):
            messages.success(request , "Your Post has been uploaded successfully....")
     form=imageForm
     image=Images.objects.all()
-    paginate=Paginator(image , 3)
+    paginate=Paginator(image , 12)
   
     page_no=request.GET.get('page')
     final_data=paginate.get_page(page_no)
