@@ -16,7 +16,7 @@ def index (request):
                  form.save()
                  messages.success(request , "Your Post has been uploaded successfully....")
         except Exception as e:
-             messages.error(request , "Failed to upload post...try after sometime...")
+             messages.error(request , "Server seems busy...try after sometime...")
 
     form=imageForm
     image=Images.objects.all()
