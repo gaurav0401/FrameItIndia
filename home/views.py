@@ -9,10 +9,15 @@ from django.core.paginator import Paginator
 
 def index (request):
     if request.method=="POST":
-        form=imageForm(request.POST , request.FILES)
-        if form.is_valid():
-           form.save()
-           messages.success(request , "Your Post has been uploaded successfully....")
+        try:
+
+            form=imageForm(request.POST , request.FILES)
+            if form.is_valid():
+                 form.save()
+                 messages.success(request , "Your Post has been uploaded successfully....")
+        except Exception as e:
+             messages.danger(request , "Failed to upload post...try after some time...")
+
     form=imageForm
     image=Images.objects.all()
     paginate=Paginator(image , 12)
