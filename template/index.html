@@ -19,16 +19,7 @@
 
 
     <style>
-        #images {
-            width: 80vw;
-            margin-left: 10vw;
-            /* padding-right: %; */
-            height: 100vh;
-            min-width: 80vw;
-            border: 1px solid white;
-            border-radius: 12px;
-        }
-
+   
 
 
 
@@ -46,10 +37,9 @@
 
 
         .images {
-            margin-top: 5px;
-            margin-right: 25px;
-            height: 190px;
-            margin-bottom: 10px;
+           
+            height: 260px;
+          
             transition-property: height;
             transition-duration: 0.3s;
             transition-timing-function: ease-in-out;
@@ -60,26 +50,13 @@
 
         .show-case :hover {
 
-            height: 200px;
+            height: 268px;
 
 
         }
 
 
 
-        .footer {
-
-
-            margin-left: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-            background-color: black;
-            text-decoration: none;
-        }
-
-        a {
-            text-decoration: none;
-        }
     </style>
 </head>
 
@@ -104,7 +81,7 @@
 
         <div class="container-fluid mt-0" style=" background: linear-gradient(to right, #8360c3, #2ebf91);">
             <div class="py-5 text-center  text-white" style="height: 38vh; background: linear-gradient(to right, #8360c3, #2ebf91); border-radius: 5px;">
-                <h1 class="mb-4">Join FrameItIndia Community by posting your best Shots <i class="fa-solid fa-camera"></i></h1>
+                <h1 class="mb-4">Join #FrameItIndia Community by posting your best Shots <i class="fa-solid fa-camera"></i></h1>
                 <form action="" method="post" enctype="multipart/form-data">
 
                     {% csrf_token %}
@@ -129,15 +106,15 @@
                 &nbsp; Pictures By FrameItIndia Community
             </h3>
 
-            <div class="row">
+            <div class="row ">
                 {% if image %}
 
                 {% for i in image %}
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4 mt-3 show-case">
 
                     <div class="card m-2"><a href="{{i.photo.url}}"> <img src="{{i.photo.url}}" alt=""
-                                class="card-img-top" height="250px"></a>
-                        <div class="card-footer" style="background-color: rgb(48, 48, 48); color: whitesmoke;">
+                                class="card-img-top" height="260px"></a>
+                        <div class="card-footer mt-0 mb-0 pt-0  pb-0" style="background-color: rgb(48, 48, 48); color: whitesmoke;">
                             <small>Posted on:{{i.date}}</small>
                         </div>
                     </div>
@@ -192,8 +169,8 @@
 
 
 
-        <div class="footer" style="margin-top: 50vh;">
-            <div class="footer" style="margin-bottom: 0px;">
+      
+            <div class="footer mt-5 pt-5" style="margin-bottom: 0px;">
 
                 <footer class="bg-dark text-center text-lg-start text-white">
                     <!-- Grid container -->
@@ -212,7 +189,7 @@
 
             </div>
             <!-- End of .container -->
-        </div>
+        
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
