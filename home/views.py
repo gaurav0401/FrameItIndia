@@ -20,7 +20,7 @@ def index (request):
 
     form=imageForm
     image=Images.objects.all()
-    paginate=Paginator(image , 6)
+    paginate=Paginator(image , 9)
   
     page_no=request.GET.get('page')
     final_data=paginate.get_page(page_no)
